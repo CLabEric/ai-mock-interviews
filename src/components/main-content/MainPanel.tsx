@@ -38,10 +38,12 @@ const MainPanel = ({ apiKey, selectedProvider }: MainPanelProps) => {
   const {
     interviewState,
     isLoading,
+    isTyping,
     startInterview,
     handleUserMessage,
     generateFeedback,
-  } = useInterviewOrchestrator({ apiKey, provider: selectedProvider });
+    setIsTyping,
+  } = useInterviewOrchestrator({ apiKey, provider: selectedProvider, username: 'user' });
 
   const handleScroll = useCallback(() => {
     const viewport = scrollAreaRef.current?.querySelector('[data-radix-scroll-area-viewport]');
@@ -93,7 +95,7 @@ const MainPanel = ({ apiKey, selectedProvider }: MainPanelProps) => {
 
   const uiMessages = interviewState.history
     .map(toUIMessage)
-    .filter((msg) => msg.content !== '');
+    .filter((msg: Message) => msg.content !== '');
 
   return (
     <main className="flex-1 flex flex-col bg-background h-full">
@@ -103,7 +105,7 @@ const MainPanel = ({ apiKey, selectedProvider }: MainPanelProps) => {
             {/* The interview start options are now handled by ChatInput */}
           </div>
         ) : (
-          <ChatContent messages={uiMessages} />
+          <ChatContent messages={uiMessages} setIsTyping={setIsTyping} />
         )}
       </ScrollArea>
 
@@ -127,7 +129,7 @@ const MainPanel = ({ apiKey, selectedProvider }: MainPanelProps) => {
       <ChatInput
         onSendMessage={handleUserMessage}
         hasSentFirstMessage={interviewState.stage !== 'IDLE'}
-        disabled={interviewState.stage === 'IDLE' || interviewState.stage === 'CONCLUSION' || interviewState.stage === 'FEEDBACK' || isLoading}
+        disabled={interviewState.stage === 'IDLE' || interviewState.stage === 'CONCLUSION' || interviewState.stage === 'FEEDBACK' || isLoading || isTyping}
         onStartInterview={startInterview}
       />
 

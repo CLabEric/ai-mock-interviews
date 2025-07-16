@@ -40,7 +40,7 @@ const Sidebar = ({ isOpen, onClose, onOpenApiKeyModal, onClearApiKey }: SidebarP
            AI
          </AvatarFallback>
        </Avatar>
-       <h1 className="text-lg font-semibold text-foreground">Chat AI</h1>
+       <h1 className="text-lg font-semibold text-foreground">Mock Master AI</h1>
      </div>
 
 

@@ -12,10 +12,9 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/claude-api': {
-        target: 'https://api.anthropic.com',
+      '/api': {
+        target: 'http://localhost:3001',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/claude-api/, ''),
       },
     },
   },

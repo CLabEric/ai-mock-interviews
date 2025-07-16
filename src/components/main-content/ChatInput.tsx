@@ -30,7 +30,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, hasSentFirstMessag
                  `}
             >
                 {/* Content is always rendered, visibility controlled by parent div's classes */}
-                     <h1 className="text-3xl font-bold mb-4">Welcome to Chat AI</h1>
+                     <h1 className="text-3xl font-bold mb-4">Welcome to Mock Master AI</h1>
                      <p className="text-muted-foreground mb-8">Choose an interview type to begin:</p>
                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-md">
                          <Button variant="outline" className="h-auto py-4 text-left whitespace-normal" onClick={onStartInterview}>
